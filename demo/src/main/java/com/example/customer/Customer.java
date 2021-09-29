@@ -10,7 +10,10 @@ import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.Data;
+
 @Entity
+@Data
 @Table(name = "costomer")
 public class Customer implements UserDetails {
 
