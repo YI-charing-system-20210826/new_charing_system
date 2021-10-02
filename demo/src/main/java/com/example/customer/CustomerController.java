@@ -14,36 +14,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CustomerController {
 
 	@Autowired
-	private CustomerRepository repository;
+	private CustomerService customerService;
 
-	public List<Customer> get() {
-		return (List<Customer>) repository.findAll();
+	//ユーザー情報一覧画面を表示
+	@GetMapping("/customer_list")
+	public String displayList(Model model) {
+		List<Customer>customer_list = customerService.searchAll();
+		model.addAllAttributes(customer_list);
+		return "customer_list";
 	}
 
-	@RequestMapping("/")
-	public String index() {
-		return "redirect:/top";
-	}
-
-	@GetMapping("/login")
-	public String login() {
-		return "login";
-	}
-
-	@PostMapping("/login")
+	@PostMapping("")
 	public String loginPost() {
-		return "redirect:/login-error";
+		return "";
 	}
 
-	@GetMapping("/login-error")
+	@GetMapping("")
 	public String loginError(Model model) {
 		model.addAttribute("loginError", true);
 		return "login";
 	}
 
-	@RequestMapping("/top")
+	@RequestMapping("")
 	public String top() {
-		return "/top";
+		return "";
 	}
 
 }

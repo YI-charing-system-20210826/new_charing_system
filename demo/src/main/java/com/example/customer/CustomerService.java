@@ -3,6 +3,7 @@ package com.example.customer;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -10,28 +11,26 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerService implements UserDetailsService {
 
+	
 	@Autowired
-	private CustomerRepository repository;
+	private CustomerRepository customerRepository;
 
 	private List<Customer> result;
-
-	@Override
-	public Customer loadUserByUsername(String customer_id) throws UsernameNotFoundException {
-		if (customer_id == null || "".equals(customer_id)) {
-			throw new UsernameNotFoundException("Username is empty");
-		}
-
-		Customer user = repository.findByUsername(customer_id);
-		if (user == null) {
-			throw new UsernameNotFoundException("User not found: " + customer_id);
-		}
-
-		return user;
+	
+	//全検索returnで検索結果
+	public List<Customer> searchAll() {
+		return customerRepository.findAll();
 	}
 
 	public List<Customer> findAllList() {
-		result = repository.findAll();
+		result = customerRepository.findAll();
 		return result;
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
 	}
 
 }

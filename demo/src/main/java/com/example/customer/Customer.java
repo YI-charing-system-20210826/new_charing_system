@@ -21,7 +21,7 @@ public class Customer implements UserDetails {
 
 	@Id
 	@Column(nullable = false, unique = true)
-	private int customer_id;
+	private Long customer_id;
 
 	@Column(nullable = false)
 	private String last_name;
@@ -45,7 +45,7 @@ public class Customer implements UserDetails {
 	private String email;
 
 	@Column(nullable = false)
-	private int post_no;
+	private Long post_no;
 
 	@Column(nullable = false)
 	private String address;
@@ -59,8 +59,8 @@ public class Customer implements UserDetails {
 	protected Customer() {
 	}
 
-	public Customer(int customer_id, String last_name, String first_name, String last_name_Kana, String first_name_Kana,
-			String gender, String tel_no, String email, int post_no, String address, String address_detail,
+	public Customer(Long customer_id, String last_name, String first_name, String last_name_Kana, String first_name_Kana,
+			String gender, String tel_no, String email, Long post_no, String address, String address_detail,
 			String remarks) {
 
 		this.customer_id = customer_id;
