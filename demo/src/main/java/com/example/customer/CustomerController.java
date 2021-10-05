@@ -15,6 +15,16 @@ public class CustomerController {
 
 	@Autowired
 	private CustomerService customerService;
+	
+	@RequestMapping("/")
+	public String index() {
+		return "redirect:/top";
+	}
+	
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
 
 	//ユーザー情報一覧画面を表示
 	@GetMapping("/customer_list")
